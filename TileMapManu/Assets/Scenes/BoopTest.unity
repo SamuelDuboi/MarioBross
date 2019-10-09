@@ -150,11 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3ad77e38b733f4f896a6b64123ce91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyable: 1
+  destroyParticleO: {fileID: 5296370048476265403, guid: 111edc3bc46c7984fb2c537f668242fc,
+    type: 3}
   solidBlockSprite: {fileID: 8177493371353434649, guid: 25a3e38340f5f7545b35230910db5ff0,
     type: 3}
-  storedItem: {fileID: 1317554941718895739, guid: fc6cd8d5ef5908e49a180c6a5120a20c,
-    type: 3}
-  storedCoins: 5
+  storedItem: {fileID: 0}
+  storedCoins: 1
   coinAnimationO: {fileID: 8743071066119573248, guid: 7e891a91b0d06ef418ca65693eed1a4c,
     type: 3}
   riseSpeed: 2
@@ -196,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -1338087537346812034, guid: 25a3e38340f5f7545b35230910db5ff0,
+  m_Sprite: {fileID: -3089592146180466243, guid: 25a3e38340f5f7545b35230910db5ff0,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

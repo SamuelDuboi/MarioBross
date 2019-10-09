@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SurpriseBox : MonoBehaviour
 {
+    public bool destroyable;
+    public GameObject destroyParticleO;
     public Sprite solidBlockSprite;
     public GameObject storedItem;
     [Range(0,20)]
@@ -16,7 +18,15 @@ public class SurpriseBox : MonoBehaviour
     bool itemInside;
     void Start()
     {
-        itemInside = true;
+        if(storedItem != null)
+        {
+            itemInside = true;
+        }
+        else
+        {
+            itemInside = false;
+        }
+
         canBeBooped = true;
     }
 
@@ -24,7 +34,7 @@ public class SurpriseBox : MonoBehaviour
     {
         if(canBeBooped)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 StartCoroutine(Boop());
             }
@@ -35,7 +45,7 @@ public class SurpriseBox : MonoBehaviour
                 StartCoroutine(Boop());
             }
 
-            if (storedCoins <= 0)
+            if (storedCoins <= 0 && !itemInside)
             {
                 canBeBooped = false;
                 GetComponent<SpriteRenderer>().sprite = solidBlockSprite;
@@ -59,20 +69,28 @@ public class SurpriseBox : MonoBehaviour
             Instantiate(coinAnimationO, transform.position, Quaternion.identity);
         }
 
-        while(transform.position.y >= startYPos)
+        if(!destroyable)
         {
-            transform.position = new Vector2(transform.position.x, startYPos + Mathf.Sin(relativeTime * 20) * 0.5f);
-            relativeTime += 0.02f;
-            yield return new WaitForSeconds(0.02f);
+            while (transform.position.y >= startYPos)
+            {
+                transform.position = new Vector2(transform.position.x, startYPos + Mathf.Sin(relativeTime * 20) * 0.5f);
+                relativeTime += 0.02f;
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            transform.position = new Vector2(transform.position.x, startYPos);
+
+            if (storedItem != null && itemInside)
+            {
+                itemInside = false;
+                StartCoroutine(RiseItem(Instantiate(storedItem, new Vector2(transform.position.x, transform.position.y), Quaternion.identity)));
+
+            }
         }
-
-        transform.position = new Vector2(transform.position.x, startYPos);
-
-        if (storedItem != null && itemInside)
+        else
         {
-            itemInside = false;
-            StartCoroutine(RiseItem(Instantiate(storedItem, new Vector2(transform.position.x, transform.position.y), Quaternion.identity)));
-
+            Instantiate(destroyParticleO, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 
