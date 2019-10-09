@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     bool canJump = true;
     public float maxSpeed = 10f;
      public static Rigidbody2D playerrbg;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         playerrbg = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,12 @@ public class PlayerController : MonoBehaviour
 
 
         playerrbg.velocity = new Vector2(speed, playerrbg.velocity.y);
+        if (playerrbg.velocity.x != 0)
+        {
+            animator.SetBool("IsRunning", true);
+        }
+        else
+            animator.SetBool("IsRunning", false);
 
 
         if (Input.GetKeyDown("space") && canJump)
@@ -63,7 +71,12 @@ public class PlayerController : MonoBehaviour
             canJump = false;
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+                if (playerrbg.velocity.x == 0)
+                    animator.SetBool("IsJumping", true);
+                else
+                    animator.SetBool("IsJumpingRunning", true);
         }
+
 
         
 
@@ -76,6 +89,8 @@ public class PlayerController : MonoBehaviour
         if(collision.transform.tag == "sol" || collision.transform.tag == "Pipe")
         {
             canJump = true;
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsJumpingRunning", false);
         }
     }
 }
