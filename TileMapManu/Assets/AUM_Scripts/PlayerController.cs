@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
-    public float acceleration = 0.1f;
+    public float acceleration = 1f;
     public float force = 100f;
     bool canJump = true;
+    public float maxSpeed = 10f;
     
     // Start is called before the first frame update
     void Start()
@@ -21,14 +22,12 @@ public class PlayerController : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector2 position = transform.position;
-
-        if ((inputX > 0) && (speed < 0.2))
+        if ((inputX > 0) && (speed < maxSpeed))
         {
             speed += acceleration;
 
         }
-        else if((inputX < 0) && (speed > -0.2))
+        else if((inputX < 0) && (speed > -maxSpeed))
         {
             speed -= acceleration;
         }
@@ -53,9 +52,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        position.x += speed;
 
-        transform.position = position;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
 
 
         if (Input.GetKeyDown("space") && canJump)
@@ -75,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("collision");
 
-        if(collision.transform.tag == "sol")
+        if(collision.transform.tag == "sol" || collision.transform.tag == "Pipe")
         {
             canJump = true;
         }
