@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
             canJump = false;
 
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 12), ForceMode2D.Impulse);
                 if (playerrbg.velocity.x == 0)
                     animator.SetBool("IsJumping", true);
                 else
@@ -90,5 +91,10 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", false);
             animator.SetBool("IsJumpingRunning", false);
         }
+    }
+    private void Update()
+    {
+        if (transform.position.y <= -6)
+            SceneManager.LoadScene("AUM_Niveau_2");
     }
 }

@@ -42,7 +42,7 @@ public class SurpriseBox : MonoBehaviour
                 StartCoroutine(Boop());
             }
 
-            hitCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.0f, 0.2f), 0.0f);
+            hitCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.9f, 0.2f), 0.0f);
             if (hitCollider.CompareTag("Player"))
             {
                 StartCoroutine(Boop());

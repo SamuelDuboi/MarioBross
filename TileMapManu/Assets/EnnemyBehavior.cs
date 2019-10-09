@@ -29,8 +29,10 @@ public class EnnemyBehavior : MonoBehaviour
         Collider2D collider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(0.9f, 0.2f), 0);
         if (collider != null && collider.CompareTag("Player"))
         {
-            StartCoroutine(Death());
             PlayerController.playerrbg.velocity = new Vector2(speed, 5);
+            StartCoroutine(Death());
+            
+
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,7 +52,9 @@ public class EnnemyBehavior : MonoBehaviour
         speed = 0;
         box.isTrigger = true;
         yield return new WaitForSeconds(1);
+        
         Destroy(gameObject);
+
     }
 
     public void KillBoop()
