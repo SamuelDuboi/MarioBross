@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3583446123616358568}
   - component: {fileID: 6427877859603584523}
   - component: {fileID: 8380453386237399118}
+  - component: {fileID: 689589983}
   m_Layer: 0
-  m_Name: Turtle
+  m_Name: Gumba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -1256054792837345567, guid: 65755858a6510e04e84c40480b092c18,
+  m_SortingOrder: 3
+  m_Sprite: {fileID: -1021589557207760700, guid: 65755858a6510e04e84c40480b092c18,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0072066784}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.75}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.5, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.75}
+  m_Size: {x: 0.5, y: 0.5049653}
   m_EdgeRadius: 0
 --- !u!50 &6427877859603584523
 Rigidbody2D:
@@ -125,7 +126,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -145,4 +146,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   ennemie: {fileID: 6427877859603584523}
-  box: {fileID: 0}
+  box: {fileID: 3583446123616358568}
+--- !u!95 &689589983
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124121405717442095}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45009050f8763764f8022a7b118f9ac0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8403672560365431119}
   m_Layer: 0
   m_Name: Sol
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
