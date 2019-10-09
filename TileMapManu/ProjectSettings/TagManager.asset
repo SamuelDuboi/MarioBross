@@ -6,6 +6,8 @@ TagManager:
   tags:
   - sol
   - Pipe
+  - Ground
+  - ennemy
   layers:
   - Default
   - TransparentFX
