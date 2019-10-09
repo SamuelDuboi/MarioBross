@@ -16,8 +16,11 @@ public class SurpriseBox : MonoBehaviour
     Collider2D hitCollider;
     bool canBeBooped;
     bool itemInside;
+    bool isBooping;
     void Start()
     {
+        isBooping = false;
+
         if(storedItem != null)
         {
             itemInside = true;
@@ -32,15 +35,15 @@ public class SurpriseBox : MonoBehaviour
 
     void Update()
     {
-        if(canBeBooped)
+        if(canBeBooped && !isBooping)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
                 StartCoroutine(Boop());
             }
 
-            hitCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.0f, 0.1f), 0.0f, LayerMask.GetMask("Player"));
-            if (hitCollider != null)
+            hitCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.0f, 0.2f), 0.0f);
+            if (hitCollider.CompareTag("Player"))
             {
                 StartCoroutine(Boop());
             }
@@ -55,12 +58,13 @@ public class SurpriseBox : MonoBehaviour
 
     private IEnumerator Boop()
     {
+        isBooping = true;
         float startYPos = transform.position.y;
         float relativeTime = 0;
-        Collider2D aboveCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(1.0f, 0.1f), 0.0f);
-        if(aboveCollider != null && aboveCollider.CompareTag("Ennemi"))
+        Collider2D aboveCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.6f), new Vector2(1.0f, 0.1f), 0.0f);
+        if(aboveCollider != null && aboveCollider.CompareTag("ennemy"))
         {
-            //aboveCollider.gameObject.GetComponent<EnnemiBehaviour>().KillBoop();
+            aboveCollider.gameObject.GetComponent<EnnemyBehavior>().KillBoop();
         }
 
         if (storedCoins > 0)
@@ -92,6 +96,7 @@ public class SurpriseBox : MonoBehaviour
             Instantiate(destroyParticleO, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+        isBooping = false;
     }
 
     private IEnumerator RiseItem(GameObject item)

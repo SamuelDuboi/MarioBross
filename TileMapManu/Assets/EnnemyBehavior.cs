@@ -27,7 +27,7 @@ public class EnnemyBehavior : MonoBehaviour
             Destroy(gameObject);
 
         Collider2D collider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(0.9f, 0.2f), 0);
-        if (collider.CompareTag("Player"))
+        if (collider != null && collider.CompareTag("Player"))
         {
             StartCoroutine(Death());
             PlayerController.playerrbg.velocity = new Vector2(speed, 5);
@@ -53,7 +53,7 @@ public class EnnemyBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void KillBoop()
+    public void KillBoop()
     {
         transform.localScale = -transform.localScale;
         speed = -5;
