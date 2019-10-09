@@ -786,20 +786,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4943677623905397878, guid: 8c870d90cae79974fbdd0d87f1961eff,
-        type: 3}
-      propertyPath: acceleration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943677623905397878, guid: 8c870d90cae79974fbdd0d87f1961eff,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943677623905397882, guid: 8c870d90cae79974fbdd0d87f1961eff,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 1.7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c870d90cae79974fbdd0d87f1961eff, type: 3}
