@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnnemyBehavior : MonoBehaviour
 {
     public float speed;
@@ -24,25 +25,29 @@ public class EnnemyBehavior : MonoBehaviour
     {
         if (transform.position.y < -6)
             Destroy(gameObject);
+
+        Collider2D collider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(0.9f, 0.2f), 0);
+        if (collider.CompareTag("Player"))
+        {
+            StartCoroutine(Death());
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Pipe")
             speed = -speed;
-
-        if (collision.gameObject.tag == "Player")
-            if (collision.contacts[0].point.x > transform.position.x - 0.1f && collision.contacts[0].point.x < transform.position.x + 0.1f)
-            {
-                StartCoroutine(Death());
-            }
-
+         
+   
     }
+
+
 
     IEnumerator Death()
     {
         // transition d'animation a faire
         animator.SetBool("death", true);
         speed = 0;
+        box.isTrigger = true;
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
