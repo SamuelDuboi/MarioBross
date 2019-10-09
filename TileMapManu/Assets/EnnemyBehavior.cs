@@ -30,11 +30,12 @@ public class EnnemyBehavior : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             StartCoroutine(Death());
+            PlayerController.playerrbg.velocity = new Vector2(speed, 5);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Pipe")
+        if (collision.gameObject.tag == "Pipe" || collision.gameObject.tag == "ennemy")
             speed = -speed;
          
    
